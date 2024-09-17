@@ -1,16 +1,16 @@
-let arr = [1, 2, [3], [4, [5, 6]]];
+let arr = [1, 2, [3], [4, [5,[ 6]]]];
 
 console.log(arr.flat(1));
 
-Array.prototype.myFlat = function(depth){
+Array.prototype.myFlat = function(){
     let res = [];
     if(!Array.isArray(this)){
         throw new Error("Error");
     }
     
     this.forEach((el)=>{
-        if(Array.isArray(el) && depth>0){
-            res.push(...el.myFlat(depth-1))
+        if(Array.isArray(el)){
+            res.push(...el.myFlat())
         }else{
             res.push(el);
         }
@@ -18,4 +18,4 @@ Array.prototype.myFlat = function(depth){
     return res;
 }
 
-console.log(arr.myFlat(2));
+console.log(arr.myFlat());
